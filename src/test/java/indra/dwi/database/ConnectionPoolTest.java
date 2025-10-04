@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionPoolTest {
 
@@ -36,6 +37,7 @@ public class ConnectionPoolTest {
     @Test
     void testUtil() throws SQLException {
         Connection connection = ConnectionUtil.getDataSource().getConnection();
+
     }
 
 
