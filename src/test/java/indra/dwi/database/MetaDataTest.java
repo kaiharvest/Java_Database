@@ -18,7 +18,7 @@ public class MetaDataTest {
 
         while (belajarJavaDatabase.next()) {
             String tableName = belajarJavaDatabase.getString("TABLE_NAME");
-            System.out.println("Table " + tableName);
+            System.out.println("Table : " + tableName);
         }
 
         connection.close();
@@ -38,4 +38,27 @@ public class MetaDataTest {
         connection.close();
     }
 
+    @Test
+    void testResultSetMetaDAta() throws Exception {
+        Connection connection = ConnectionUtil.getDataSource().getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM comments");
+
+        ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+
+        System.out.println(resultSetMetaData.getColumnCount());
+
+        for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
+            System.out.println("Name : " + resultSetMetaData.getColumnName(i));
+            System.out.println("Type : " + resultSetMetaData.getColumnType(i));
+            System.out.println("TYpe name : " + resultSetMetaData.getColumnTypeName(i));
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+    }
+
 }
+
+
